@@ -39,7 +39,9 @@ class AudioTranscriber:
         segments, _ = self.model.transcribe(
             audio_data,
             language=self.language,
-            beam_size=5,
+            beam_size=1,        # Utilisation de greedy decoding (1 au lieu de 5) pour une vitesse 3x plus rapide
+            best_of=1,          # Une seule tentative d'échantillonnage pour éviter le surcoût de calcul
+            temperature=0.0,    # Inférence déterministe ultra-rapide sans tâtonnements de température
             # Le VAD est déjà géré de manière indépendante en amont
             vad_filter=False, 
             without_timestamps=True

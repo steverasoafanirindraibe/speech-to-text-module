@@ -68,11 +68,17 @@ class SpeechService:
         audio_buffer = []
         is_speaking = False
         silence_start_time = None
+        start_time = time.time()
         
         logger.info("En écoute...")
         
         try:
             for chunk in self.recorder.get_audio_stream():
+                # Vérification de la limite de temps de sécurité globale
+                if time.time() - start_time > self.config.max_record_duration_s:
+                    logger.info("Limite de durée d'enregistrement maximale atteinte.")
+                    break
+                    
                 # On utilise le VAD pour repérer le début de la voix
                 chunk_has_speech = self.vad.is_speech(chunk)
                 
