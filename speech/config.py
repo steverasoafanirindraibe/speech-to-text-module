@@ -15,10 +15,10 @@ class SpeechConfig:
     chunk_duration_ms: int = 32
     silence_timeout_s: float = 2.0
     # Limite de sécurité de la durée d'enregistrement vocal en secondes (pour éviter les débordements de mémoire)
-    max_record_duration_s: float = 5
+    max_record_duration_s: float = 30
     
     # Paramètres Faster-Whisper
-    whisper_model: str = "tiny"
+    whisper_model: str = "base"
     language: str = "fr"
     # Utiliser le GPU si disponible, sinon CPU
     device: str = "cuda" if torch.cuda.is_available() else "cpu"

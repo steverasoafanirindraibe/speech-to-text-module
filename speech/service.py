@@ -110,3 +110,41 @@ class SpeechService:
         complete_audio = np.concatenate(audio_buffer)
         
         return self.transcriber.transcribe(complete_audio)
+
+    def listen_fixed(self, duration_s: float) -> str:
+        """
+        Écoute le microphone pendant une durée fixe (en secondes) spécifiée,
+        sans détection de silence ni VAD, puis transcrit le résultat.
+        
+        Args:
+            duration_s: Durée fixe d'enregistrement en secondes.
+            
+        Returns:
+            Le texte transcrit.
+        """
+        # S'assurer de ne pas dépasser la limite absolue de sécurité (ex. 30s)
+        max_limit = max(self.config.max_record_duration_s, 30.0)
+        duration_s = min(duration_s, max_limit)
+        
+        logger.info(f"Enregistrement fixe démarré pour {duration_s} secondes...")
+        self.recorder.start()
+        
+        audio_buffer = []
+        start_time = time.time()
+        
+        try:
+            for chunk in self.recorder.get_audio_stream():
+                audio_buffer.append(chunk)
+                if time.time() - start_time >= duration_s:
+                    break
+        except KeyboardInterrupt:
+            logger.info("Enregistrement interrompu manuellement.")
+        finally:
+            self.recorder.stop()
+            
+        if not audio_buffer:
+            return ""
+            
+        # Concaténer tous les fragments
+        complete_audio = np.concatenate(audio_buffer)
+        return self.transcriber.transcribe(complete_audio)

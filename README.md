@@ -2,7 +2,7 @@
 
 Un composant Python professionnel de reconnaissance vocale (Speech-to-Text), conçu pour être modulaire, performant et indépendant.
 
-## 🚀 Objectif et Architecture
+## Objectif et Architecture
 
 Le module a été conçu selon les principes de la "Clean Architecture". Il est totalement découplé de la logique métier externe (pas de MQTT, d'IoT, ou de cas d'usage spécifiques). Il se concentre sur une seule responsabilité : **transformer l'audio en texte**.
 
@@ -32,7 +32,7 @@ Le système intègre plusieurs optimisations incontournables :
 2. **Quantification :** Utilisation de `compute_type="int8"` dans `Faster-Whisper` pour diminuer drastiquement l'empreinte mémoire, au prix d'une perte imperceptible de précision.
 3. **Voice Activity Detection (VAD) :** Silero VAD filtre l'audio et déclenche la transcription uniquement lorsqu'une voix humaine est détectée, évitant ainsi un gaspillage inutile de CPU/GPU.
 
-## 📦 Installation
+## Installation
 
 Il est très fortement recommandé de travailler au sein d'un environnement virtuel (`venv`).
 
@@ -44,7 +44,7 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-## 🛠 API Publique et Exemples
+## API Publique et Exemples
 
 L'interaction se fait au travers de la classe `SpeechService`. 
 
@@ -83,7 +83,7 @@ print(texte)
 
 Pour plus d'exemples détaillés, référez-vous aux scripts du dossier `examples/`.
 
-## 🧪 Tests Unitaires
+## Tests Unitaires
 
 Pour valider le fonctionnement et l'indépendance de l'orchestrateur (avec mocks) :
 

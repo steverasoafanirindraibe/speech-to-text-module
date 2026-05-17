@@ -2,7 +2,7 @@ import io
 import logging
 import numpy as np
 import soundfile as sf
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -41,7 +41,7 @@ class TranscriptionResponse(BaseModel):
     duration_processed: float = 0.0
 
 @app.post(
-    "/transcribe-file",
+    "/api/transcribe-file",
     response_model=TranscriptionResponse,
     summary="Transcrit un fichier audio (.wav)",
     description="Téléverse un fichier audio WAV (16kHz mono recommandé) et retourne sa transcription textuelle."
@@ -98,26 +98,32 @@ async def transcribe_file(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Erreur lors de la transcription : {str(e)}")
 
 @app.post(
-    "/record-and-transcribe",
+    "/api/record-and-transcribe",
     response_model=TranscriptionResponse,
-    summary="Enregistre et transcrit en temps réel depuis le microphone du serveur",
-    description="Déclenche l'écoute sur le microphone du serveur. L'écoute s'arrête automatiquement après la détection d'un silence (pause naturelle dans la voix)."
+    summary="Enregistre et transcrit en direct depuis le microphone",
+    description="Déclenche l'écoute sur le microphone pour une durée fixe définie (en secondes). L'enregistrement se poursuit même en cas de silence."
 )
-async def record_and_transcribe():
+async def record_and_transcribe(
+    duration_s: int = Query(
+        5,
+        description="Durée de l'enregistrement en secondes (entre 1 et 30 secondes)",
+        ge=1,
+        le=30
+    )
+):
     """
-    Déclenche la capture audio physique via SoundDevice, applique Silero VAD,
-    puis effectue la transcription de la phrase dès la fin de parole détectée.
+    Enregistre l'audio du microphone pour une durée fixe, puis effectue sa transcription.
     """
     try:
-        logger.info("Début de l'écoute via l'API...")
-        text = speech_service.listen()
+        logger.info(f"Début de l'écoute fixe via l'API pour {duration_s} secondes...")
+        text = speech_service.listen_fixed(duration_s)
         return TranscriptionResponse(
             status="success",
             transcription=text,
-            duration_processed=0.0  # Durée non déterminée précisément pour le flux microphone en direct
+            duration_processed=float(duration_s)
         )
     except Exception as e:
-        logger.error(f"Erreur lors de la capture audio/VAD : {e}")
+        logger.error(f"Erreur lors de la capture audio fixe : {e}")
         raise HTTPException(status_code=500, detail=f"Erreur lors de l'enregistrement ou de la transcription : {str(e)}")
 
 if __name__ == "__main__":

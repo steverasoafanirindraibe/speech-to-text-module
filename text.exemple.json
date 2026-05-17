@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "text": "Allume la lumière du salon et règle le ventilateur de la chambre à vitesse moyenne. Ensuite, ouvre la porte de la cuisine et désactive le système d’alarme pendant dix minutes."
+    },
+    {
+        "id": 2,
+        "text": "Peux-tu me dire quel temps il fera demain à Lyon et s’il faut prévoir un parapluie pour la sortie de ce soir ? Et envoie un message à Sophie pour lui dire que je serai en retard."
+    },
+    {
+        "id": 3,
+        "text": "Mets une alerte pour que je sois prévenu quand la température de la chambre dépassera les vingt-trois degrés Celsius. Quelle heure est-il à Tokyo et est-ce que ma voiture est suffisamment chargée pour le trajet ?"
+    },
+    {
+        "id": 4,
+        "text": "Rappelle-moi dans vingt minutes de sortir les poubelles et baisse le volume de la musique de moitié. Ajoute aussi du pain et du lait à la liste de courses. Quelles sont les actualités sportives et y a-t-il des embouteillages sur mon trajet habituel ?"
+    },
+    {
+        "id": 5,
+        "text": "Configure une routine pour que lorsque j’arrive à la maison, les lumières du couloir et de la cuisine s’allument automatiquement et que le chauffage du salon monte de deux degrés. Active aussi le mode éco sur le lave-vaisselle."
+    },
+    {
+        "id": 6,
+        "text": "Éteins tous les appareils électriques de la maison et mets le verrou de la porte d’entrée en position bloquée. Peux-tu me rappeler de prendre mes clés en sortant ? Quelle est la dernière mise à jour de mon calendrier et y a-t-il des réunions importantes aujourd’hui ? Quels sont les titres des derniers articles d’actualité et y a-t-il des notifications en attente sur mes applications ?"
+    }
+]
