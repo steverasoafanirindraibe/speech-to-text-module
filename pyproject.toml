@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "speech_module"
+version = "0.1.0"
+description = "Module professionnel de Speech-to-Text modulaire et temps réel."
+authors = [
+    {name = "Ingénieur", email = "dev@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "faster-whisper>=1.0.0",
+    "sounddevice>=0.4.6",
+    "numpy>=1.24.0",
+    "torch>=2.0.0",
+    "torchaudio>=2.0.0",
+    "soundfile>=0.12.1"
+]

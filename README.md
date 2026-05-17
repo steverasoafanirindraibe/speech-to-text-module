@@ -1,0 +1,92 @@
+# Speech-to-Text Module
+
+Un composant Python professionnel de reconnaissance vocale (Speech-to-Text), conçu pour être modulaire, performant et indépendant.
+
+## 🚀 Objectif et Architecture
+
+Le module a été conçu selon les principes de la "Clean Architecture". Il est totalement découplé de la logique métier externe (pas de MQTT, d'IoT, ou de cas d'usage spécifiques). Il se concentre sur une seule responsabilité : **transformer l'audio en texte**.
+
+### Structure des dossiers
+
+```text
+speech-module/
+├── speech/
+│   ├── __init__.py     # Exposition de l'API (SpeechService)
+│   ├── config.py       # Centralisation de la configuration (dataclass)
+│   ├── recorder.py     # Capture du microphone via SoundDevice
+│   ├── transcriber.py  # Wrapper performant pour Faster-Whisper
+│   ├── vad.py          # Détection d'activité vocale (Silero VAD)
+│   ├── service.py      # Orchestrateur de flux
+│   └── models/         # Dossier vide réservé au stockage de modèles
+├── tests/              # Tests unitaires du composant
+├── examples/           # Exemples d'utilisation de l'API
+├── requirements.txt    # Liste des dépendances pip
+├── pyproject.toml      # Fichier d'installation moderne
+└── setup.py            # Fichier d'installation legacy
+```
+
+### Optimisations de Performances
+
+Le système intègre plusieurs optimisations incontournables :
+1. **Chargement unique (Singleton State) :** Le modèle Whisper est instancié une seule fois par composant `Transcriber`. Aucune création répétée coûteuse.
+2. **Quantification :** Utilisation de `compute_type="int8"` dans `Faster-Whisper` pour diminuer drastiquement l'empreinte mémoire, au prix d'une perte imperceptible de précision.
+3. **Voice Activity Detection (VAD) :** Silero VAD filtre l'audio et déclenche la transcription uniquement lorsqu'une voix humaine est détectée, évitant ainsi un gaspillage inutile de CPU/GPU.
+
+## 📦 Installation
+
+Il est très fortement recommandé de travailler au sein d'un environnement virtuel (`venv`).
+
+```bash
+# 1. Installer les dépendances
+pip install -r requirements.txt
+
+# 2. (Optionnel) Installer le package en mode développement pour l'importer facilement
+pip install -e .
+```
+
+## 🛠 API Publique et Exemples
+
+L'interaction se fait au travers de la classe `SpeechService`. 
+
+### Écoute du Microphone en temps réel
+
+Le service s'occupe de capturer l'audio, de détecter les pauses (silence), puis de déclencher la transcription de la phrase de façon autonome.
+
+```python
+from speech import SpeechService
+
+speech = SpeechService()
+print("Parlez...")
+
+# Bloque jusqu'à la fin de la prise de parole
+texte = speech.listen()
+
+print(texte)
+```
+
+### Transcription d'un fichier audio direct
+
+Utile si vous possédez déjà les informations sous format de tableau NumPy en mémoire (ex. un fichier chargé, ou un flux externe).
+
+```python
+import soundfile as sf
+from speech import SpeechService
+
+# L'audio doit être de préférence en 16kHz, mono
+audio_data, sample_rate = sf.read("audio.wav")
+
+speech = SpeechService()
+texte = speech.transcribe(audio_data)
+
+print(texte)
+```
+
+Pour plus d'exemples détaillés, référez-vous aux scripts du dossier `examples/`.
+
+## 🧪 Tests Unitaires
+
+Pour valider le fonctionnement et l'indépendance de l'orchestrateur (avec mocks) :
+
+```bash
+python -m unittest discover -s tests
+```
