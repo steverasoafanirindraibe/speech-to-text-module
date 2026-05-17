@@ -1,26 +1,38 @@
 [
     {
         "id": 1,
-        "text": "Allume la lumière du salon et règle le ventilateur de la chambre à vitesse moyenne. Ensuite, ouvre la porte de la cuisine et désactive le système d’alarme pendant dix minutes."
+        "text": "Allume la lumière du salon et règle le ventilateur de la chambre à vitesse moyenne. Ensuite, ouvre la porte de la cuisine et désactive le système d’alarme pendant dix minutes.",
+        "transcription-tiny-model": "A l'humil almière du salon il régule le ventélateur dans la chambre à vitesse moyenne. Ensuite, ouvrez la porte de la piscine et désactif le système d'alarme pendant 10 minutes.",
+        "transcription-base-model": "Allume la lumière du salon et régler le ventilateur dans la chambre à vitesse moyenne. Ensuite, ouvrez la porte de la cuisine et désactive le système d'alarme pendant 10 minutes."
     },
     {
         "id": 2,
-        "text": "Peux-tu me dire quel temps il fera demain à Lyon et s’il faut prévoir un parapluie pour la sortie de ce soir ? Et envoie un message à Sophie pour lui dire que je serai en retard."
+        "text": "Peux-tu me dire quel temps il fera demain à Lyon et s’il faut prévoir un parapluie pour la sortie de ce soir ? Et envoie un message à Sophie pour lui dire que je serai en retard.",
+        "transcription-tiny-model": "Petite un dire qu'elle tombe et fera de ma alliance et si faut prévoir un parable lui pour la sortie de ce soir et on voit mes sages à sauf à un message à sauf-y pour lui dire que je serais en retard.",
+        "transcription-base-model": "Peut-tu le dire ? Quelle temps il fera de m'éalien ? Et s'il faut pouvoir un parapluie pour la sortie de ce soir. Et on voit un message à sauf, à un message à sauf, pour lui dire que je serai en retard."
     },
     {
         "id": 3,
-        "text": "Mets une alerte pour que je sois prévenu quand la température de la chambre dépassera les vingt-trois degrés Celsius. Quelle heure est-il à Tokyo et est-ce que ma voiture est suffisamment chargée pour le trajet ?"
+        "text": "Mets une alerte pour que je sois prévenu quand la température de la chambre dépassera les vingt-trois degrés Celsius. Quelle heure est-il à Tokyo et est-ce que ma voiture est suffisamment chargée pour le trajet ?",
+        "transcription-tiny-model": "Mais une alerte pour que je sois prévenu quand l'attente plus qu'on l'a température de la chambre, tu ne passeras les 20, 3 des grés c'est le suce. Quel heure est-il à Tokyo et est-ce que m'avoir tuur ? Est-ce suffisamment changer pour le trajet ?",
+        "transcription-base-model": "Mais une alerte pour que je soit prévenu qu'on la température de la chambre dépassera les 20, 3 dégrés c'est le sus. Quelle heure est-il à Tokyo et est-ce que ma voiture est suffisamment chargée pour le trajet ?"
     },
     {
         "id": 4,
-        "text": "Rappelle-moi dans vingt minutes de sortir les poubelles et baisse le volume de la musique de moitié. Ajoute aussi du pain et du lait à la liste de courses. Quelles sont les actualités sportives et y a-t-il des embouteillages sur mon trajet habituel ?"
+        "text": "Rappelle-moi dans vingt minutes de sortir les poubelles et baisse le volume de la musique de moitié. Ajoute aussi du pain et du lait à la liste de courses. Quelles sont les actualités sportives et y a-t-il des embouteillages sur mon trajet habituel ?",
+        "transcription-tiny-model": "Rappell moi dans 20 minutes de sortie, de sortir les poubelles et baissent le volume de la musique pour moi-t-il. A chaussis du pain du léalist et du course, quels sont les actuels disponibles ? Y'a-t-il des embouteages sur mon trajet habituel ?",
+        "transcription-base-model": "Rappele-moi dans 20 minutes de sortir les poubelles et baisse le volume de la musique de moitié. Ajoutons-tu aussi du pain et du lait à la liste de courses ? Quelles sont les actualités sportives ? Y a-t-il des emboutiers à se montrer un géabituel ?"
     },
     {
         "id": 5,
-        "text": "Configure une routine pour que lorsque j’arrive à la maison, les lumières du couloir et de la cuisine s’allument automatiquement et que le chauffage du salon monte de deux degrés. Active aussi le mode éco sur le lave-vaisselle."
+        "text": "Configure une routine pour que lorsque j’arrive à la maison, les lumières du couloir et de la cuisine s’allument automatiquement et que le chauffage du salon monte de deux degrés. Active aussi le mode éco sur le lave-vaisselle.",
+        "transcription-tiny-model": "Confidure une routine pour que lorsque j'arrive à la maison, la lumière du colloir et l'aïde et la cuisine s'en lumbre automatiquement et que le chauffage du salant monte du décrets activer aussi le mot de épreu sur le l'amplissant.",
+        "transcription-base-model": "Configure une routine pour que lorsque j'arrive à la maison, la lumière du couloir et la haïde de la cuisine s'enlume automatiquement et que le chauffage du salant monte, du décrit, active aussi le monte écho sur le la vaisseine."
     },
     {
         "id": 6,
-        "text": "Éteins tous les appareils électriques de la maison et mets le verrou de la porte d’entrée en position bloquée. Peux-tu me rappeler de prendre mes clés en sortant ? Quelle est la dernière mise à jour de mon calendrier et y a-t-il des réunions importantes aujourd’hui ? Quels sont les titres des derniers articles d’actualité et y a-t-il des notifications en attente sur mes applications ?"
+        "text": "Éteins tous les appareils électriques de la maison et mets le verrou de la porte d’entrée en position bloquée. Peux-tu me rappeler de prendre mes clés en sortant ? Quelle est la dernière mise à jour de mon calendrier et y a-t-il des réunions importantes aujourd’hui ? Quels sont les titres des derniers articles d’actualité et y a-t-il des notifications en attente sur mes applications ?",
+        "transcription-tiny-model": "Et tente les appareils électriques de la maison et mes levies-vous de la porte d'entrée en position bloquée. Peut-tu me rappeler de prendre mes clés en sortant ? Quel est la dernière mise à jour de mon tronondrier ? Y'a-t-il des réignants importantes aujourd'hui ? Et quels sont les titres des derniers articles d'actualité et y'a-t-il dénotification en un temps sur mes applications ?  Et quels sont les réignants importantes ?",
+        "transcription-base-model": "Et tente-le les appareils électriques de la maison et mets le vivout de la porte d'entrée en position bloquée. Peut-tu me rappeler du prendre mes clés en sortant ? Quelle est la dernière mise à jour du monde Rolandrier ? Il y a t-il d'éreignants importants aujourd'hui ? Et quels sont les titres des derniers articles d'actualité ? Et y a t-il des notifications en attente sur mes applications ?  Et qu'il y a t-il d'éreignants ?"
     }
 ]
