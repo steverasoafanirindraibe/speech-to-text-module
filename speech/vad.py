@@ -25,24 +25,43 @@ class VoiceActivityDetector:
     def is_speech(self, audio_chunk: np.ndarray) -> bool:
         """
         Détermine si un segment audio contient de la parole.
+        Découpe automatiquement l'audio en fenêtres de taille requise par Silero VAD
+        (512 échantillons à 16kHz, 256 à 8kHz) pour éviter les plantages de TorchScript.
         
         Args:
             audio_chunk: Tableau NumPy contenant les échantillons audio (float32).
             
         Returns:
-            True si la probabilité de parole dépasse le seuil configuré.
+            True si la probabilité de parole dépasse le seuil configuré sur l'une des fenêtres.
         """
         if len(audio_chunk) == 0:
             return False
             
-        # Le modèle Silero s'attend à des tenseurs PyTorch float32
-        tensor_chunk = torch.from_numpy(audio_chunk).float()
+        # Détermination de la taille de fenêtre requise par le modèle Silero
+        window_size = 512 if self.sample_rate == 16000 else 256
         
-        # Ajout de la dimension de batch si nécessaire
-        if tensor_chunk.ndim == 1:
-            tensor_chunk = tensor_chunk.unsqueeze(0)
+        # Si le fragment global est trop court, on le remplit de zéros
+        if len(audio_chunk) < window_size:
+            padding = np.zeros(window_size - len(audio_chunk), dtype=np.float32)
+            audio_chunk = np.concatenate([audio_chunk, padding])
             
-        with torch.no_grad():
-            speech_prob = self.model(tensor_chunk, self.sample_rate).item()
+        # Découpage et évaluation de chaque sous-fenêtre
+        for i in range(0, len(audio_chunk), window_size):
+            chunk = audio_chunk[i:i + window_size]
             
-        return speech_prob >= self.threshold
+            # Gérer la dernière fenêtre incomplète si nécessaire
+            if len(chunk) < window_size:
+                padding = np.zeros(window_size - len(chunk), dtype=np.float32)
+                chunk = np.concatenate([chunk, padding])
+                
+            tensor_chunk = torch.from_numpy(chunk).float()
+            if tensor_chunk.ndim == 1:
+                tensor_chunk = tensor_chunk.unsqueeze(0)
+                
+            with torch.no_grad():
+                speech_prob = self.model(tensor_chunk, self.sample_rate).item()
+                
+            if speech_prob >= self.threshold:
+                return True
+                
+        return False

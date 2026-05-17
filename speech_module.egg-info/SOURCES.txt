@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+setup.py
+speech/__init__.py
+speech/config.py
+speech/recorder.py
+speech/service.py
+speech/transcriber.py
+speech/vad.py
+speech_module.egg-info/PKG-INFO
+speech_module.egg-info/SOURCES.txt
+speech_module.egg-info/dependency_links.txt
+speech_module.egg-info/requires.txt
+speech_module.egg-info/top_level.txt
+tests/test_service.py

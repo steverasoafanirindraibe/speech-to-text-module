@@ -11,8 +11,8 @@ class SpeechConfig:
     sample_rate: int = 16000
     channels: int = 1
     
-    # Paramètres d'enregistrement
-    chunk_duration_ms: int = 100
+    # Paramètres d'enregistrement (32 ms correspond exactement à 512 échantillons à 16kHz)
+    chunk_duration_ms: int = 32
     silence_timeout_s: float = 2.0
     
     # Paramètres Faster-Whisper
